@@ -26,11 +26,13 @@ void selection_sort(int *array, size_t size)
 			if (array[j] < array[min_id])
 				min_id = j;
 		}
+		if (min_id != i)
+		{
+			temp = array[min_id];
+			array[min_id] = array[i];
+			array[i] = temp;
 
-		temp = array[min_id];
-		array[min_id] = array[i];
-		array[i] = temp;
-
-		print_array(array, size);
+			print_array(array, size);
+		}
 	}
 }
