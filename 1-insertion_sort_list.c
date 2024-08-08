@@ -1,6 +1,4 @@
 #include "sort.h"
-#include<stdio.h>
-#include<stdlib.h>
 /**
  * insertion_sort_list - perform insertion sort on a linked list
  * @list: head node of the linked list
