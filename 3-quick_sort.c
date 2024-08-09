@@ -1,62 +1,34 @@
 #include "sort.h"
 
 /**
- * quick_sort - Function that sorts an array based on
- * quick sort algorithm
- * @array: Array to be sorted
- * @size: Size of array
- * Return: 0
- */
-void quick_sort(int *array, size_t size)
-{
-	size_t pivot;
-
-	if (!array || size < 2)
-		return;
-
-	print_sort(array, size, 1);
-
-	/* partition and get pivot index */
-	pivot = partition(array, size);
-
-	/* repeat for left of index */
-	quick_sort(array, pivot);
-	/* repeat for index and right */
-	quick_sort(array + pivot, size - pivot);
-}
-
-/**
- * swap - Function that swaps two values
+ * swap - Swaps two integer values.
  *
- * @a: Fisrt value
- * @b: Second value
- * Return: 0
+ * @a: Pointer to the first value
+ * @b: Pointer to the second value
  */
 void swap(int *a, int *b)
 {
 	int tmp;
 
-	tmp = *b;
-	*b = *a;
-	*a = tmp;
+	tmp = *a;
+	*a = *b;
+	*b = tmp;
 }
 
 /**
- * partition - Function that sets the pivot for quick_sort
+ * partition - Partitions the array using the Lomuto partition scheme.
  *
- * @array: Array to partition
- * @size: Size of array
- * Return: (i + 1)
+ * @array: Pointer to the array of integers to partition
+ * @size: Size of the array
+ * Return: The index of the pivot after partitioning
  */
 size_t partition(int array[], size_t size)
 {
 	int pivot;
-	size_t i = -1;
+	size_t i;
 	size_t j;
 
-	if (!array || size < 2)
-		return (0);
-
+	i = -1;
 	pivot = array[size - 1];
 
 	for (j = 0; j < size - 1; j++)
@@ -67,35 +39,29 @@ size_t partition(int array[], size_t size)
 			if (i != j)
 			{
 				swap(&array[i], &array[j]);
-				print_sort(array, size, 0);
+				print_array(array, size);
 			}
 		}
 	}
 	if (i + 1 != size - 1)
 	{
 		swap(&array[i + 1], &array[size - 1]);
-		print_sort(array, size, 0);
+		print_array(array, size);
 	}
 	return (i + 1);
 }
 
 /**
- * print_sort - Function that prints as it should
- * @array: Array to be printed
- * @size: Size of array
- * @init: Should initialize array
- * Return: 0
+ * quick_sort - Sorts an array of integers in ascending order
+ * using the Quick sort algorithm with Lomuto partition scheme.
+ *
+ * @array: Pointer to the array of integers to be sorted
+ * @size: Size of the array
  */
-void print_sort(int array[], size_t size, int init)
+void quick_sort(int *array, size_t size)
 {
-	static int *p = (void *)0;
-	static size_t s;
+	if (!array || size < 2)
+		return;
 
-	if (!p && init)
-	{
-		p = array;
-		s = size;
-	}
-	if (!init)
-		print_array(p, s);
+	partition(array, size);
 }
