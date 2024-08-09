@@ -28,7 +28,7 @@ size_t partition(int array[], size_t size)
 	size_t i;
 	size_t j;
 
-	i = -1;
+	i = 0;
 	pivot = array[size - 1];
 
 	for (j = 0; j < size - 1; j++)
