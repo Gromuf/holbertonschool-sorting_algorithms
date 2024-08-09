@@ -65,7 +65,7 @@ void quick_sort_rec(int *array, int low, int high)
 	if (low < high)
 	{
 		pivot_index = partition(array + low, high - low + 1) + low;
-		
+
 		quick_sort_rec(array, low, pivot_index - 1);
 		quick_sort_rec(array, pivot_index + 1, high);
 	}
